@@ -1,6 +1,6 @@
 (function() {
     $(document).ready(function() {
-        
+
         $('#apiList').delegate("li", "click", function(event) {
             event.stopPropagation();
             item = $(this);
