@@ -12,7 +12,10 @@
             $('#apiTitle').text(item.text());
         });
 
-        $('#excute').click(function() {
+        $('li.active').trigger('click');
+
+        $('#excute').click(function(event) {
+            event.stopPropagation();
             var url = "/api?method=" + $('#apiTitle').text();
             $.ajax({
                 url: url,

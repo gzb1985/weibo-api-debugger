@@ -14,25 +14,32 @@
     <div class="row">
         <div class="span3">
             <div class="well sidebar-nav">
-            <ul class="nav nav-list" id="apiList">
-              <li class="nav-header">User</li>
-              <li class="active"><a href="#">users/show</a></li>
-              <li><a href="#">users/domain_show</a></li>
-              <li><a href="#">users/counts</a></li>
-            </ul>
+                <ul class="nav nav-list" id="apiList">
+                    <li class="nav-header">User</li>
+                    <li class="active"><a>users/show</a></li>
+                    <li><a>users/domain_show</a></li>
+                    <li><a>users/counts</a></li>
+                </ul>
             </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
-            <h1 id="apiTitle">users/show</h1>
+            <h1>API: <span id="apiTitle"></span></h1>
             <br>
-            <form class="well form-inline">
-                <input type="text" class="input-small" placeholder="邮件">
-                <input type="password" class="input-small" placeholder="密码">
+            <div class="well form-inline">
+                <input type="text" class="input-small" placeholder="参数">
+                <input type="text" class="input-small" placeholder="值">
+                <button class="btn btn-primary" id="addParam">添加</button>
+                <!--
                 <label class="checkbox">
                     <input type="checkbox"> 记住我
                 </label>
-                <button type="submit" class="btn btn-primary" id="excute">执行</button>
-            </form>
+                -->
+                <button class="btn btn-primary pull-right" id="excute">执行</button>
+            </div>
+
+            <br>
+            <h1>Json:</h1>
+            <br>
             <pre class="prettyprint linenums lang-js"></pre>
         </div><!--/span-->
 

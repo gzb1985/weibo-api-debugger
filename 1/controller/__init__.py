@@ -38,7 +38,10 @@ def get_api_json():
 			weibo_user = client.get.users__show(uid=uid)
 			return {'status': 'success', 'rst': weibo_user}
 	else:
-		return {'status': 'success', 'rst': {'uid':12345}}
+		d = {};
+		for i in range(1,30):
+			d[str(i)] = i
+		return {'status': 'success', 'rst': {'uid':12345}, 'other': d}
 	return {'status': 'error'}
 
 @app.route('/logout')
