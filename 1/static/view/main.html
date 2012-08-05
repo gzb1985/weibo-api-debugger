@@ -1,0 +1,46 @@
+
+{% extends "static/view/mybase.html" %}
+{% block title %}weibo api debugger{% endblock title %}
+{% block head %}
+    {{ super() }}
+{% endblock head %}
+
+{% block header %}
+    {{ super() }}
+{% endblock header %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="span3">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list" id="apiList">
+              <li class="nav-header">User</li>
+              <li class="active"><a href="#">users/show</a></li>
+              <li><a href="#">users/domain_show</a></li>
+              <li><a href="#">users/counts</a></li>
+            </ul>
+            </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+            <h1 id="apiTitle">users/show</h1>
+            <br>
+            <form class="well form-inline">
+                <input type="text" class="input-small" placeholder="邮件">
+                <input type="password" class="input-small" placeholder="密码">
+                <label class="checkbox">
+                    <input type="checkbox"> 记住我
+                </label>
+                <button type="submit" class="btn btn-primary" id="excute">执行</button>
+            </form>
+            <div class="jsonreport"></div>
+            <pre class="prettyprint linenums lang-js"></pre>
+        </div><!--/span-->
+
+    </div><!--/row-->
+</div><!--/.fluid-container-->
+{% endblock content %}
+
+{% block footer %}
+    {{ super() }}
+{% endblock footer %}

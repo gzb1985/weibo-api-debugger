@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock title %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link href="/static/css/bootstrap.css" rel="stylesheet">
+        <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="/static/js/google-code-prettify/prettify.css" rel="stylesheet" />
+        <link href="/static/css/jieju.css" rel="stylesheet">
+
+        <script type="text/javascript" src="/static/js/jquery.js"></script>
+        <script type="text/javascript" src="/static/js/google-code-prettify/prettify.js"></script>
+        <script type="text/javascript" src="/static/js/my.js"></script>
+        {% endblock head %}
+    </head>
+
+    <body>
+        {% block header %}
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <div class="nav pull-right">
+                        <ul class="nav">
+                            {% if not username %}
+                            <li class>
+                                <a href="/login_to_weibo">Log In</a>
+                            </li>
+                            {% endif %}
+                            {% if profile_image_url %}
+                            <li class>
+                                <img href="{{profile_image_url}}"/>
+                            </li>
+                            {% endif %}
+                            {% if username %}
+                            <li class>
+                                <a href="#">{{username}}</a>
+                            </li>
+                            <li class>
+                                <a href="/logout">Log Out</a>
+                            </li>
+                            {% endif %}
+
+                        </ul>
+                    </div>
+                    <div class="topnav">
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock header %}
+
+        {% block content %}
+        {% endblock content %}
+
+        {% block footer %}
+        <hr>
+        <div id="footer">
+            Copyright &copy; gzb1985. <br/>
+        </div>
+        {% endblock footer %}
+    </body>
+</html>
