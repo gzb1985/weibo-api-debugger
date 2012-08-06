@@ -12,9 +12,9 @@ bottle.debug(True)
 
 from weibo import APIClient
 
-redirect_url_weibo = "http://gzb1985.sinaapp.com/login/weibo"
-weibo_appid = '2023070208'
-weibo_app_secret='abb0afabbd3b82348971b1c6ad891c2c'
+redirect_url_weibo = "http://weiboapidebugger.sinaapp.com/weibo"
+weibo_appid = '3179652632'
+weibo_app_secret='3bc523e4528f6f4de2efb48d4eddec81'
 
 @app.route('/')
 @view('static/view/main.html')
@@ -82,8 +82,7 @@ def session_login(request) :
 	session = request.environ['beaker.session']
 	if 'username' in session:
 		username = session['username']
-		if isUserExsit(username) :
-			return True, username
+		return True, username
 	return False, None
 
 def session_logout(request) :

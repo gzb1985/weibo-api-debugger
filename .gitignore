@@ -135,6 +135,7 @@ Desktop.ini
 *.wsgic
 jinja2
 beaker
+.svn
 
 # Packages
 *.egg
