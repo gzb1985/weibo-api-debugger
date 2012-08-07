@@ -27,11 +27,14 @@
 
         fetchCallback = function(obj, textStatus, xhr) {
             xhr = null;
-            if (obj.status && obj.status == 'success') {
-                var j = JSON.stringify(obj.rst, null, 4);
-                $('.prettyprint').html(j);
-                prettyPrint();
+            var j;
+            if (obj.status && obj.status === 'success') {
+                j = JSON.stringify(obj.rst, null, 4);
+            } else {
+                j = JSON.stringify(obj, null, 4);
             }
+            $('.prettyprint').html(j);
+            prettyPrint();
         };
     });
 })();

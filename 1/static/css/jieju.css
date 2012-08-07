@@ -37,3 +37,7 @@
 #apiList li {
     cursor:pointer;
 }
+
+#apiList li.nav-header {
+    cursor:default;
+}
