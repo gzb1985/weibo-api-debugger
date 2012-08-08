@@ -12,7 +12,7 @@
             $('#apiTitle').text(item.text());
         });
 
-        $('li.active').trigger('click');
+        $('#apiList li:first').trigger('click');
 
         $('#excute').click(function(event) {
             event.stopPropagation();

@@ -15,12 +15,16 @@
         <div class="span3">
             <div class="well sidebar-nav">
                 <ul class="nav nav-list" id="apiList">
-                    <li class="nav-header">User</li>
-                    <li class="active"><a>users/show</a></li>
-                    <li><a>users/domain_show</a></li>
-                    <li><a>users/counts</a></li>
-                    <li class="nav-header">Weibo</li>
-                    <li ><a>statuses/user_timeline</a></li>
+                    {% if g_api %}
+                    {% for key in g_api %}
+                        <li><a>{{key}}</a></li>
+                    {% endfor %}
+                    {% else %}
+                        <li><a>statuses/user_timeline</a></li>
+                        <li class="active"><a>users/show</a></li>
+                        <li><a>users/domain_show</a></li>
+                        <li><a>users/counts</a></li>
+                    {% endif %}
                 </ul>
             </div><!--/.well -->
         </div><!--/span-->
