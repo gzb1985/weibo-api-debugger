@@ -10,6 +10,7 @@
             item.siblings(".active").removeClass("active");
             item.addClass("active");
             $('#apiTitle').text(item.text());
+            $('#apiUrl').text('https://api.weibo.com/2/' + item.text() +'.json');
         });
 
         $('#apiList li:first').trigger('click');

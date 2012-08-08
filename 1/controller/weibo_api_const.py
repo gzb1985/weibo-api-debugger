@@ -4,6 +4,9 @@ weibo_appid = '3179652632'
 weibo_app_secret='3bc523e4528f6f4de2efb48d4eddec81'
 
 g_api = [
+	'account/get_uid',
+	'account/rate_limit_status',
+	'account/get_privacy',
 	'statuses/public_timeline',
 	'statuses/friends_timeline',
 	'statuses/user_timeline',
@@ -15,6 +18,9 @@ g_api = [
 from session_util import get_uid
 
 g_param = [
+	{}, # account/get_uid
+	{}, # account/rate_limit_status
+	{}, # account/get_privacy
 	{'count': 10, 'page': None, 'base_app': None}, # statuses/public_timeline
 	{'count': 10}, # statuses/friends_timeline
 	{'uid': get_uid, 'count': 10}, # statuses/user_timeline
