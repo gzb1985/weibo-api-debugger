@@ -12,7 +12,10 @@ g_api = [
 	'statuses/user_timeline',
 	'users/counts',
 	'users/domain_show',
-	'users/show'
+	'users/show',
+	'place/friends_timeline',
+	'place/user_timeline',
+	'place/users/photos'
 ]
 
 from session_util import get_uid
@@ -26,5 +29,8 @@ g_param = [
 	{'uid': get_uid, 'count': 10}, # statuses/user_timeline
 	{'uids': get_uid}, # users/counts
 	{'domain': 'ifanr'}, # users/domain_show
-	{'uid': get_uid} # users/show
+	{'uid': get_uid}, # users/show
+	{'count': 10}, # place/friends_timeline
+	{'uid': get_uid, 'count': 10}, # place/user_timeline
+	{'uid': get_uid} #place/users/photos
 ]

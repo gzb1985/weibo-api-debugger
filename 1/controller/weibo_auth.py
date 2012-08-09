@@ -18,6 +18,7 @@ def handle_weibo_oauth_callback():
 	expires_in = r.expires_in
 	client.set_access_token(access_token, expires_in)
 
+	print r.uid
 	weibo_user = client.get.users__show(uid=r.uid)
 	session_save(weibo_user.screen_name, r.uid, access_token, expires_in)
 	return redirect('/')
