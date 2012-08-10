@@ -35,7 +35,7 @@ def get_api_json():
 	else:
 		d = {};
 		for i in range(1, 10): d[str(i)] = i
-		return {'status': 'success', 'rst': {'uid':12345, 'other': d}}
+		return {'status': 'success', 'rst': {'uid':12345, 'x' : {'x':[{'x':1, 'y':2}, {'x':1, 'y':2}, {'x':1, 'y':2}]},'other': d}}
 	return {'status': 'error'}
 
 

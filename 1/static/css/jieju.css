@@ -4,7 +4,7 @@
 }
 
 .navbar-inner{
-        min-height: 50px;
+        min-height: 40px;
         background: #ffffff; /* Old browsers */
         background: -moz-linear-gradient(top,  #ffffff 0%, #f6f6f6 47%, #ededed 100%); /* FF3.6+ */
         background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(47%,#f6f6f6), color-stop(100%,#ededed)); /* Chrome,Safari4+ */
@@ -31,7 +31,7 @@
 }
 
 #apiList {
-    height: 640px;
+    height: 700px;
 }
 
 #apiList li {

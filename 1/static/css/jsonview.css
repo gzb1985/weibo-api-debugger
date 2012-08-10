@@ -1,0 +1,49 @@
+
+.prop {
+  font-weight: bold;
+}
+
+.null {
+  color: red;
+}
+
+.bool {
+  color: blue;
+}
+
+.num {
+  color: blue;
+}
+
+.string {
+  color: green;
+}
+
+.collapser {
+  position: absolute;
+  left: -1em;
+  cursor: pointer;
+}
+
+#jsonView ul li {
+  position: relative;
+}
+
+#jsonView ul li:after {
+  content: ',';
+}
+
+#jsonView ul li:last-child:after {
+  content: '';
+}
+
+#jsonView {
+  font-family: monospace;
+  font-size: 1.1em;
+}
+
+#jsonView ul {
+  list-style: none;
+  margin: 0 0 0 2em;
+  padding: 0;
+}

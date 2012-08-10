@@ -28,15 +28,32 @@
 
         fetchCallback = function(obj, textStatus, xhr) {
             xhr = null;
-            var j;
+            var json;
             if (obj.status && obj.status === 'success') {
-                j = JSON.stringify(obj.rst, null, 4);
+                json = obj.rst;
             } else {
-                j = JSON.stringify(obj, null, 4);
+                json = obj;
             }
-            $('.prettyprint').html(j);
+            $('#formatedJson').html(JSON.stringify(json, null, 4));
             prettyPrint();
+
+            var element = JSONFormatter.prototype.jsonToHTML(json);
+            $('#collapsedJson').empty()
+            $('#collapsedJson').append(element);
+            $(element).ready(function() {
+              var items = document.getElementsByClassName('collapsible');
+              for( var i = 0; i < items.length; i++) {
+                addCollapser(items[i].parentNode);
+              }
+            });
+
+            $('#rawJson').html(JSON.stringify(json, null, 0));
         };
+
+        $('#myTab a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
     });
 })();
 
