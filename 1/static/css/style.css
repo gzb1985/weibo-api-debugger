@@ -1,0 +1,19 @@
+
+#footer{
+    width:700px;
+    margin:0 auto;
+    padding-bottom:15px;
+    text-align:center;
+}
+
+#apiList {
+    height: 700px;
+}
+
+#apiList li {
+    cursor:pointer;
+}
+
+#apiList li.nav-header {
+    cursor:default;
+}

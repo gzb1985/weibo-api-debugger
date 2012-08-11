@@ -47,7 +47,7 @@
               }
             });
 
-            $('#rawJson').html(JSON.stringify(json, null, 0));
+            $('#rawJson').text(JSON.stringify(json, null, 0));
         };
 
         $('#myTab a').click(function (e) {
