@@ -137,6 +137,9 @@ jinja2
 beaker
 .svn
 
+#sae debug
+dev_server.py
+
 # Packages
 *.egg
 *.egg-info
