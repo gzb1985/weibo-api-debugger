@@ -16,7 +16,7 @@
         </style>
         <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
         <link href="/static/js/google-code-prettify/prettify.css" rel="stylesheet" />
-        <link href="/static/css/jieju.css" rel="stylesheet">
+        <link href="/static/css/style.css" rel="stylesheet">
         <link href="/static/css/jsonview.css" rel="stylesheet" >
 
         <script type="text/javascript" src="/static/js/jquery.js"></script>
@@ -24,7 +24,7 @@
         <script type="text/javascript" src="/static/js/bootstrap-tab.js"></script>
         <script type="text/javascript" src="/static/js/jsonview.js"></script>
         <script type="text/javascript" src="/static/js/jsonview-collapse.js"></script>
-        <script type="text/javascript" src="/static/js/my.js"></script>
+        <script type="text/javascript" src="/static/js/weibo-api-debugger.js"></script>
         {% endblock head %}
     </head>
 
@@ -33,6 +33,7 @@
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
+                    <a class="brand" href="/">微博API调试器</a>
                     <div class="nav pull-right">
                         <ul class="nav">
                             {% if not username %}
@@ -53,7 +54,6 @@
                                 <a href="/logout">Log Out</a>
                             </li>
                             {% endif %}
-
                         </ul>
                     </div>
                     <div class="topnav">
@@ -69,7 +69,9 @@
         {% block footer %}
         <hr>
         <div id="footer">
-            Copyright &copy; gzb1985. <a target="_blank" href="http://open.weibo.com/wiki/API%E6%96%87%E6%A1%A3_V2">Weibo API开发文档</a><br/>
+            Copyright &copy; gzb1985. 
+            <span>微博API调试器</span><a target="_blank" href="https://github.com/gzb1985/weibo-api-debugger">源码</a><br/>
+            <a target="_blank" href="http://open.weibo.com/wiki/API%E6%96%87%E6%A1%A3_V2">Weibo API开发文档</a><br/>
         </div>
         {% endblock footer %}
     </body>

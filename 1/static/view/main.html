@@ -1,6 +1,6 @@
 
 {% extends "static/view/mybase.html" %}
-{% block title %}weibo api debugger{% endblock title %}
+{% block title %}微博API调试器{% endblock title %}
 {% block head %}
     {{ super() }}
 {% endblock head %}
@@ -41,9 +41,9 @@
 
             <br>
             <ul class="nav nav-tabs" id="myTab">
-              <li class="active"><a href="#collapsedJson">collapsedJson</a></li>
-              <li><a href="#formatedJson">formatedJson</a></li>
-              <li><a href="#rawJson">rawJson</a></li>
+              <li class="active"><a href="#collapsedJson">解析后的Json</a></li>
+              <li><a href="#formatedJson">格式化的Json</a></li>
+              <li><a href="#rawJson">原始Json</a></li>
             </ul>
             <div class="tab-content">
               <pre class="tab-pane active well" id="collapsedJson"></pre>
