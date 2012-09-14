@@ -24,7 +24,9 @@
         <script type="text/javascript" src="/static/js/bootstrap-tab.js"></script>
         <script type="text/javascript" src="/static/js/jsonview.js"></script>
         <script type="text/javascript" src="/static/js/jsonview-collapse.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.tmpl.js"></script>
         <script type="text/javascript" src="/static/js/weibo-api-debugger.js"></script>
+
         {% endblock head %}
     </head>
 
@@ -33,7 +35,7 @@
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="/">微博API调试器</a>
+                    <h1><a class="brand" href="/">微博API调试器</a></h1>
                     <div class="nav pull-right">
                         <ul class="nav">
                             {% if not username %}

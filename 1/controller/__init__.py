@@ -12,6 +12,8 @@ from weibo_api_rpc import *
 from session_util import *
 from weibo_auth import *
 
+from inspect import isfunction
+
 @app.route('/')
 @view('static/view/main.html')
 def main_page():
@@ -19,6 +21,11 @@ def main_page():
 	if isLogged == True:
 		return {'username' : username, 'g_api': g_api}
 	return {'g_api': g_api}
+
+@app.route('/api/list')
+def get_api_list():
+	response.content_type = 'application/json'
+	return {'status': 'success', 'rst': g_apis['api']}
 
 @app.route('/api')
 def get_api_json():
@@ -30,6 +37,24 @@ def get_api_json():
 		if request.GET.get('method'):
 			method = request.GET.get('method')
 			return receive_weibo_api(method)
+		else:
+			return {'status': 'api_not_found'}
+	else:
+		d = {};
+		for i in range(1, 10): d[str(i)] = i
+		return {'status': 'success', 'rst': {'uid':12345, 'x' : {'x':[{'x':1, 'y':2}, {'x':1, 'y':2}, {'x':1, 'y':2}]},'other': d}}
+	return {'status': 'error'}
+
+@app.route('/apiManual')
+def get_api_json():
+	response.content_type = 'application/json'
+	if not is_logged_session():
+		return {'status': 'not_login'}
+
+	if deployed_on_sae:
+		if request.GET.get('method'):
+			method = request.GET.get('method')
+			return receive_weibo_api_manual(method)
 		else:
 			return {'status': 'api_not_found'}
 	else:

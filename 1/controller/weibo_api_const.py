@@ -11,11 +11,14 @@ g_api = [
 	'statuses/friends_timeline',
 	'statuses/user_timeline',
 	'users/counts',
-	'users/domain_show',
+	#'users/domain_show',
 	'users/show',
 	'place/friends_timeline',
 	'place/user_timeline',
-	'place/users/photos'
+	'place/users/photos',
+	'location/pois/search/by_location',
+	'place/nearby/pois',
+    'place/pois/photos'
 ]
 
 from session_util import get_uid
@@ -28,9 +31,32 @@ g_param = [
 	{'count': 10}, # statuses/friends_timeline
 	{'uid': get_uid, 'count': 10}, # statuses/user_timeline
 	{'uids': get_uid}, # users/counts
-	{'domain': 'ifanr'}, # users/domain_show
+	#{'domain': 'ifanr'}, # users/domain_show
 	{'uid': get_uid}, # users/show
 	{'count': 10}, # place/friends_timeline
 	{'uid': get_uid, 'count': 10}, # place/user_timeline
-	{'uid': get_uid} #place/users/photos
+	{'uid': get_uid}, #place/users/photos
+	{'category': '110201'}, #location/pois/search/by_location
+	{'lat': 31.196784, 'long': 121.586530}, #place/nearby/pois
+    {'poiid': 'B2094655D26DA5F54593'} #place/pois/photos
 ]
+
+g_apis = {
+	'api': [
+	    {'name': 'account/get_uid', 'param': []},
+	    {'name': 'account/rate_limit_status', 'param': []},
+	    {'name': 'account/get_privacy', 'param': []},
+	    {'name': 'statuses/public_timeline', 'param': ['count', 'page', 'base_app']},
+	    {'name': 'statuses/friends_timeline', 'param': ['count']},
+	    {'name': 'statuses/user_timeline', 'param': ['uid', 'count']},
+	    {'name': 'users/counts', 'param': ['uids']},
+	    {'name': 'users/show', 'param': ['uid']},
+	    {'name': 'place/friends_timeline', 'param': ['count']},
+	    {'name': 'place/user_timeline', 'param': ['uid', 'count']},
+	    {'name': 'place/users/photos', 'param': ['uid']},
+	    {'name': 'location/pois/search/by_location', 'param': ['category']},
+	    {'name': 'place/nearby/pois', 'param': ['lat', 'long']},
+	    {'name': 'place/pois/photos', 'param': ['poiid']},
+	    {'name': 'statuses/hot/repost_daily', 'param': []}
+	]
+}

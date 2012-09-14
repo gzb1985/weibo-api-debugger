@@ -136,6 +136,7 @@ Desktop.ini
 jinja2
 beaker
 .svn
+icons
 
 #sae debug
 dev_server.py

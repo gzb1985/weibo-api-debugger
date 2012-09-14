@@ -17,3 +17,12 @@
 #apiList li.nav-header {
     cursor:default;
 }
+
+.nav.nav-tabs {
+	margin-bottom: 4px;
+}
+
+.page-header {
+	padding-bottom: 5px;
+	margin: 10px 0;
+}
