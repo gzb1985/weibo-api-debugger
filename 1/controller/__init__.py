@@ -19,8 +19,8 @@ from inspect import isfunction
 def main_page():
 	isLogged, username = session_login()
 	if isLogged == True:
-		return {'username' : username, 'g_api': g_api}
-	return {'g_api': g_api}
+		return {'username' : username}
+	return {}
 
 @app.route('/api/list')
 def get_api_list():
@@ -37,24 +37,6 @@ def get_api_json():
 		if request.GET.get('method'):
 			method = request.GET.get('method')
 			return receive_weibo_api(method)
-		else:
-			return {'status': 'api_not_found'}
-	else:
-		d = {};
-		for i in range(1, 10): d[str(i)] = i
-		return {'status': 'success', 'rst': {'uid':12345, 'x' : {'x':[{'x':1, 'y':2}, {'x':1, 'y':2}, {'x':1, 'y':2}]},'other': d}}
-	return {'status': 'error'}
-
-@app.route('/apiManual')
-def get_api_json():
-	response.content_type = 'application/json'
-	if not is_logged_session():
-		return {'status': 'not_login'}
-
-	if deployed_on_sae:
-		if request.GET.get('method'):
-			method = request.GET.get('method')
-			return receive_weibo_api_manual(method)
 		else:
 			return {'status': 'api_not_found'}
 	else:

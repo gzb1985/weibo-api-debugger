@@ -4,13 +4,15 @@
         this.markup = '<li><a>${name}</a></li>';
         this.apiTemplName = 'ApiTemplate';
         this.apis = [];
-    }
+        this.currentApi = '';
+    };
 
     ApiDbg.prototype.init = function() {
         $('#myTab a').click(function (e) {
             e.preventDefault();
             $(this).tab('show');
         });
+        
     };
 
     ApiDbg.prototype.fetchApiList = function() {
@@ -25,27 +27,55 @@
 
     ApiDbg.prototype.fetchApiListCallback = function(obj, textStatus, xhr) {
         xhr = null;
+        
         if (obj.status && obj.status === 'success') {
-            $.template(this.apiTemplName, this.markup);
-            $.tmpl(this.apiTemplName, obj.rst).appendTo("#apiList");
             this.apis = obj.rst;
+            for (var i = 0; i < obj.rst.length; i++) {
+                $("#apiCat").append('<option id=' + obj.rst[i].id + '>' + obj.rst[i].name + '</option>');
+            }
+            
+            context = this;
+            $('#apiCat').change(function() {
+                var id = $(this).find('option:selected').attr('id');
+                context.displayApilistByTypeid(id);
+            });
+
+            $('#apiCat').find('option:first').trigger('change');
 
             this.handleApiList();
             this.handleApiExcution();
         }
     };
 
+    ApiDbg.prototype.displayApilistByTypeid = function(id) {
+        var apilist = this.findApilistByTypeid(id);
+        if (apilist) {
+            $('#apiList').empty();
+            $.template(this.apiTemplName, this.markup);
+            $.tmpl(this.apiTemplName, apilist).appendTo("#apiList");
+        }
+    };
+
+    ApiDbg.prototype.findApilistByTypeid = function(id) {
+        apilist = null;
+        for (var i = 0; i < this.apis.length; i++) {
+            if (id == this.apis[i].id) {
+                apilist = this.apis[i].apilist;
+            }
+        }
+        return apilist;
+    };
+
     ApiDbg.prototype.handleApiList = function(obj, textStatus, xhr) {
-        (function(apis) {
+        var id = $('#apiCat').find('option:selected').attr('id');
+        apilist = this.findApilistByTypeid(id);
+        (function(apis, theApp) {
             $('#apiList').delegate("li", "click", function(event) {
                 event.stopPropagation();
                 item = $(this);
-                if(item.hasClass("nav-header")) {
-                    return;
-                }
                 item.siblings(".active").removeClass("active");
                 item.addClass("active");
-                $('#apiTitle').text(item.text());
+                theApp.currentApi = item.text();
                 var apiUrlManual = 'https://api.weibo.com/2/' + item.text() +'.json';
                 for (var i = 0; i < apis.length; i++) {
                     if (apis[i]['name'] == item.text()) {
@@ -59,16 +89,14 @@
                 };
                 $('#apiUrlManual').val(apiUrlManual);
             });
-        })(this.apis);
-
-        $('#apiList li:first').trigger('click');
+        })(apilist, this);
     };
 
     ApiDbg.prototype.handleApiExcution = function(obj, textStatus, xhr) {
         var context = this;
         $('#excuteManual').click(function(event) {
             event.stopPropagation();
-            var url = "/apiManual?method=" + $('#apiTitle').text();
+            var url = "/api?method=" + context.currentApi;
             var param = context.parseParams($('#apiUrlManual').val());
             $('#apiRequest').text($('#apiUrlManual').val());
             $.ajax({
@@ -95,7 +123,6 @@
             while (match = search.exec(query))
                urlParams[decode(match[1])] = decode(match[2]);
         })();
-        console.log(urlParams);
         return urlParams;
     };
 
