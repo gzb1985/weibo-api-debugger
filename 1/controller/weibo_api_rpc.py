@@ -1,10 +1,15 @@
 import sys
 from bottle import request
 from inspect import isfunction
+import urllib2
+try:
+    import json
+except ImportError:
+    import simplejson as json
 
 from session_util import *
 from weibo_api_const import *
-from weibo import APIClient, APIError
+from weibo import APIClient, APIError, _obj_hook
 from util import *
 
 def receive_weibo_api(method):
@@ -15,10 +20,14 @@ def receive_weibo_api(method):
 	if not api_func:
 		return {'status': 'api_not_found'}
 	print api_func
+	json_rst = None
 	try:
 		json_rst = eval(api_func)
-	except APIError as e:
-		return {'status': str(e)}
+	except APIError as apierr:
+		return {'status': 'success', 'rst': str(apierr)}
+	except urllib2.HTTPError as err:
+		r = json.loads(err.read(), object_hook=_obj_hook)
+		return {'status': 'error', 'status_code': str(err), 'rst': r}
 	except:
 		return {'status': str(sys.exc_info())}
 	return {'status': 'success', 'rst': json_rst}

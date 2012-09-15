@@ -67,16 +67,19 @@
     };
 
     ApiDbg.prototype.handleApiList = function(obj, textStatus, xhr) {
-        var id = $('#apiCat').find('option:selected').attr('id');
-        apilist = this.findApilistByTypeid(id);
-        (function(apis, theApp) {
+        (function(theApp) {
             $('#apiList').delegate("li", "click", function(event) {
                 event.stopPropagation();
                 item = $(this);
                 item.siblings(".active").removeClass("active");
                 item.addClass("active");
                 theApp.currentApi = item.text();
+                var apiDocUrl = 'http://open.weibo.com/wiki/2/' + item.text();
+                $("#apiDoc").attr("href",apiDocUrl);
                 var apiUrlManual = 'https://api.weibo.com/2/' + item.text() +'.json';
+
+                var id = $('#apiCat').find('option:selected').attr('id');
+                apis = theApp.findApilistByTypeid(id);
                 for (var i = 0; i < apis.length; i++) {
                     if (apis[i]['name'] == item.text()) {
                         len = apis[i]['param'].length;
@@ -89,7 +92,7 @@
                 };
                 $('#apiUrlManual').val(apiUrlManual);
             });
-        })(apilist, this);
+        })(this);
     };
 
     ApiDbg.prototype.handleApiExcution = function(obj, textStatus, xhr) {
@@ -130,6 +133,8 @@
         xhr = null;
         var json;
         if (obj.status && obj.status === 'success') {
+            json = obj.rst;
+        } else if (obj.status && obj.status === 'error') {
             json = obj.rst;
         } else {
             json = obj;

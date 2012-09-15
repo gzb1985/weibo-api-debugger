@@ -128,12 +128,15 @@ def _http_call(url, method, authorization, **kw):
     http_url = '%s?%s' % (url, params) if method==_HTTP_GET else url
     http_body = None if method==_HTTP_GET else params
     req = urllib2.Request(http_url, data=http_body)
+    print http_url
     if authorization:
         req.add_header('Authorization', 'OAuth2 %s' % authorization)
     if boundary:
         req.add_header('Content-Type', 'multipart/form-data; boundary=%s' % boundary)
     resp = urllib2.urlopen(req)
+    print resp
     body = resp.read()
+    print body
     r = json.loads(body, object_hook=_obj_hook)
     if hasattr(r, 'error_code'):
         raise APIError(r.error_code, getattr(r, 'error', ''), getattr(r, 'request', ''))
