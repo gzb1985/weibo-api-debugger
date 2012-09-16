@@ -27,16 +27,16 @@ def get_api_list():
 	response.content_type = 'application/json'
 	return {'status': 'success', 'rst': g_apis['api']}
 
-@app.route('/api')
+@app.route('/rpc')
 def get_api_json():
 	response.content_type = 'application/json'
 	if not is_logged_session():
 		return {'status': 'not_login'}
 
 	if deployed_on_sae:
-		if request.GET.get('method'):
-			method = request.GET.get('method')
-			return receive_weibo_api(method)
+		if request.GET.get('api'):
+			api = request.GET.get('api')
+			return receive_weibo_api(api)
 		else:
 			return {'status': 'api_not_found'}
 	else:

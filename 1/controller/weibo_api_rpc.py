@@ -12,11 +12,11 @@ from weibo_api_const import *
 from weibo import APIClient, APIError, _obj_hook
 from util import *
 
-def receive_weibo_api(method):
+def receive_weibo_api(api):
 	client = APIClient(app_key=weibo_appid, app_secret=weibo_app_secret, 
 		redirect_uri=redirect_url_weibo)
 	client.set_access_token(get_access_token(), get_expires_in())
-	api_func = construct_weibo_api_url(method)
+	api_func = construct_weibo_api_url(api)
 	if not api_func:
 		return {'status': 'api_not_found'}
 	print api_func
@@ -32,15 +32,15 @@ def receive_weibo_api(method):
 		return {'status': str(sys.exc_info())}
 	return {'status': 'success', 'rst': json_rst}
 
-def construct_weibo_api_url(method):
+def construct_weibo_api_url(api):
 	params = ''
 	for key in request.GET:
-		if key != 'method':
+		if key != 'api':
 			value = request.GET.get(key)
 			if value != '':
 				if isWeiboApiStringParameter(value):
 					params += '%s=\'%s\',' %(key, value)
 				else:
 					params += '%s=%s,' %(key, value)
-	api_func = ('client.get.%s' % (method.replace('/','__'))) + '(' + params + ')'
+	api_func = ('client.get.%s' % (api.replace('/','__'))) + '(' + params + ')'
 	return api_func

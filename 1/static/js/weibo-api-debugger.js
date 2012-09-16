@@ -76,32 +76,32 @@
                 theApp.currentApi = item.text();
                 var apiDocUrl = 'http://open.weibo.com/wiki/2/' + item.text();
                 $("#apiDoc").attr("href",apiDocUrl);
-                var apiUrlManual = 'https://api.weibo.com/2/' + item.text() +'.json';
+                var apiUrl = 'https://api.weibo.com/2/' + item.text() +'.json';
 
                 var id = $('#apiCat').find('option:selected').attr('id');
                 apis = theApp.findApilistByTypeid(id);
                 for (var i = 0; i < apis.length; i++) {
                     if (apis[i]['name'] == item.text()) {
                         len = apis[i]['param'].length;
-                        if (len > 0) apiUrlManual += '?';
+                        if (len > 0) apiUrl += '?';
                         for (var j = 0; j < len; j++) {
-                            if (j > 0) apiUrlManual += '&';
-                            apiUrlManual += apis[i]['param'][j] + '=';
+                            if (j > 0) apiUrl += '&';
+                            apiUrl += apis[i]['param'][j] + '=';
                         }
                     }
                 };
-                $('#apiUrlManual').val(apiUrlManual);
+                $('#apiUrl').val(apiUrl);
             });
         })(this);
     };
 
     ApiDbg.prototype.handleApiExcution = function(obj, textStatus, xhr) {
         var context = this;
-        $('#excuteManual').click(function(event) {
+        $('#excuteApi').click(function(event) {
             event.stopPropagation();
-            var url = "/api?method=" + context.currentApi;
-            var param = context.parseParams($('#apiUrlManual').val());
-            $('#apiRequest').text($('#apiUrlManual').val());
+            var url = "/rpc?api=" + context.currentApi;
+            var param = context.parseParams($('#apiUrl').val());
+            $('#apiRequest').text($('#apiUrl').val());
             $.ajax({
                 url: url,
                 type: "GET",
