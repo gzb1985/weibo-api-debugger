@@ -65,12 +65,14 @@ jQuery(function( $ ) {
             this.$rawJsonTab = $('#rawJson');
             this.$formatedJsonTab = $('#formatedJson');
             this.$collapsedJsonTab = $('#collapsedJson');
+            this.$jsonTab = $('#myTab a');
             $.template(this.apiElementTemplName, this.apiElementMarkup);
         },
         bindEvents: function() {
             this.$apiTypeList.on('change', this.changeApiType );
             this.$apiList.delegate("li", "click", this.chooseApi);
             this.$excuteBtn.on('click', this.excuteApi);
+            this.$jsonTab.on('click', this.showJsonTab);
             
         },
         fetchApis: function() {
@@ -181,15 +183,7 @@ jQuery(function( $ ) {
             this.renderRawJson(json);
         },
         renderCollapsedJson: function(json) {
-            var element = JSONFormatter.prototype.jsonToHTML(json);
-            this.$collapsedJsonTab.empty();
-            this.$collapsedJsonTab.append(element);
-            $(element).ready(function() {
-                var items = document.getElementsByClassName('collapsible');
-                $.each(items, function(i, item) {
-                    addCollapser(item.parentNode);
-                });
-            });
+            jsonview(json, this.$collapsedJsonTab);
         },
         renderFormatedJson: function(json) {
             this.$formatedJsonTab.html(JSON.stringify(json, null, 4));
@@ -197,6 +191,10 @@ jQuery(function( $ ) {
         },
         renderRawJson: function(json) {
             this.$rawJsonTab.text(JSON.stringify(json));
+        },
+        showJsonTab: function (e) {
+            e.preventDefault();
+            $(this).tab('show');
         },
         render: function() {
         }

@@ -19,13 +19,12 @@
         <link href="/static/css/style.css" rel="stylesheet">
         <link href="/static/css/jsonview.css" rel="stylesheet" >
 
-        <script type="text/javascript" src="/static/js/jquery.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
         <script type="text/javascript" src="/static/js/google-code-prettify/prettify.js"></script>
         <script type="text/javascript" src="/static/js/bootstrap-tab.js"></script>
         <script type="text/javascript" src="/static/js/jsonview.js"></script>
-        <script type="text/javascript" src="/static/js/jsonview-collapse.js"></script>
         <script type="text/javascript" src="/static/js/jquery.tmpl.js"></script>
-        <script type="text/javascript" src="/static/js/weibo-api-debugger.js"></script>
+        <script type="text/javascript" src="/static/js/app.js"></script>
 
         {% endblock head %}
     </head>
@@ -35,7 +34,7 @@
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <h1><a class="brand" href="/">API调试器</a></h1>
+                    <h1><a class="brand" href="/">微博API调试台</a></h1>
                     <div class="nav pull-right">
                         <ul class="nav">
                             {% if not username %}
