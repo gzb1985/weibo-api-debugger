@@ -134,9 +134,7 @@ def _http_call(url, method, authorization, **kw):
     if boundary:
         req.add_header('Content-Type', 'multipart/form-data; boundary=%s' % boundary)
     resp = urllib2.urlopen(req)
-    print resp
     body = resp.read()
-    print body
     r = json.loads(body, object_hook=_obj_hook)
     if hasattr(r, 'error_code'):
         raise APIError(r.error_code, getattr(r, 'error', ''), getattr(r, 'request', ''))
