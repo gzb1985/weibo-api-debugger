@@ -176,3 +176,6 @@ pip-log.txt
 2
 3
 4
+
+#private files
+private_*
