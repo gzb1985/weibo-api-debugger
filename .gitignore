@@ -137,7 +137,6 @@ jinja2
 beaker
 .svn
 icons
-private_const.py
 
 #sae debug
 dev_server.py
