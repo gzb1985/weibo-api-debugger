@@ -11,6 +11,7 @@ from weibo_api_const import *
 from weibo_api_rpc import *
 from session_util import *
 from weibo_auth import *
+from private_const import *
 
 from inspect import isfunction
 
@@ -19,7 +20,11 @@ from inspect import isfunction
 def main_page():
 	isLogged, username = session_login()
 	if isLogged == True:
-		return {'username' : username}
+		try:
+			avatar = get_avatar()
+		except:
+			return {'username' : username}
+		return {'username' : username, 'avatar': avatar}
 	return {}
 
 @app.route('/api/list')
@@ -63,6 +68,6 @@ from beaker.middleware import SessionMiddleware
 session_opts = {
   'session.type': 'cookie',
   'session.expires': 3600,
-  'session.validate_key': '1234',
+  'session.validate_key': beaker_session_validate_key,
 }
 app = SessionMiddleware( app, session_opts )

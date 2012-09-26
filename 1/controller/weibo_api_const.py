@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-  
 
-redirect_url_weibo = "http://weiboapidebugger.sinaapp.com/weibo"
-weibo_appid = '3179652632'
-weibo_app_secret='3bc523e4528f6f4de2efb48d4eddec81'
-
 g_apis = {
 	'api': [
 	    {'name': '微博读取接口', 'id': 1, 'apilist': [

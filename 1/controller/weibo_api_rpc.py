@@ -11,6 +11,7 @@ from session_util import *
 from weibo_api_const import *
 from weibo import APIClient, APIError, _obj_hook
 from util import *
+from private_const import *
 
 def receive_weibo_api(api):
 	client = APIClient(app_key=weibo_appid, app_secret=weibo_app_secret, 
